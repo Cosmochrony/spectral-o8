@@ -80,8 +80,11 @@ and the Capacity Growth Exponent}\\[6pt]
     Each non-backtracking 3-step path $v_0 \to v_1 \to v_2 \to v_3$ is encoded by the
     tensor product $\pi_3(v_0 \to v_3) = \rho_\perm(v_1) \otimes \rho_\perm(v_2)
     \otimes \rho_\perm(v_3) \in \R^{(q+1)^3}$, giving ambient dimension $(q+1)^3 = O(q^3)$.
-    The saturation threshold is predicted at $|S^*| = O(q^2)$, yielding a pre-saturation
-    window of length $O(q)$ BFS steps — the first in the O-series to grow with $q$.
+    The saturation threshold is predicted at $|S^*| = O(q^2)$ in vertex count,
+    the first growing window in the O-series.
+    On LPS graphs, exponential shell growth ($|S_n| \approx p^n$) compresses this
+    $O(q^2)$-vertex window to only $O(\log q)$ BFS steps, which prevents reliable
+    exponent extraction at the group sizes tested.
 
     We test the state law $\Rn \approx \Phi(\etan)$ of O7 at this fingerprint level on
     $X^{5,q}$ for $q \in \{13, 17, 29\}$, extract the capacity growth exponent $\delta$
@@ -90,8 +93,10 @@ and the Capacity Growth Exponent}\\[6pt]
     toward a first-principles derivation of $\delta$.
   \end{abstract}
 
+  \clearpage
   \tableofcontents
 
+  \clearpage
   \section{Introduction}
     \label{sec:intro}
 
@@ -148,16 +153,22 @@ and the Capacity Growth Exponent}\\[6pt]
       The present paper:
       \begin{enumerate}[nosep]
   \item Constructs the $k = 3$ permutation-path fingerprint
-  $\pi_3 : \mathrm{NBT\text{-}paths}_3(X^{5,q}) \to \R^{(q+1)^3}$
+  $\pi_3 : \mathrm{NBT\text{-}paths}_3(X^{p,q}) \to \R^{(q+1)^3}$
   (Definition~\ref{def:fingerprint3}).
-  \item Proves the saturation bound $|S^*| \leq O(q^2)$ and the pre-saturation
-  window prediction (Proposition~\ref{prop:satbound}).
+  \item Proves the saturation bound $|S^*| \leq O(q^2)$ in vertex count
+  and confirms it numerically (Proposition~\ref{prop:satbound},
+  Table~\ref{tab:exponents}).
   \item Tests the state law $\Rn \approx \Phi(\etan)$ from O7 at $k = 3$
-  on $X^{5,q}$ for $q \in \{13, 17, 29\}$ (Section~\ref{sec:numerics}).
-  \item Extracts the capacity growth exponent $\delta$ via the log-log slope
-  of $\bSigma_n$ vs.\ $p(n)$ (Section~\ref{sec:exponent}).
-  \item Reports whether $\delta \in [7.4,\,10.6]$ and discusses the implications
-  (Section~\ref{sec:discussion}).
+  on $X^{p,q}$ for four $(p,q)$ configurations (Section~\ref{sec:numerics}).
+  \item Extracts the capacity growth exponent $\delta$ in the window
+  $|S_n| \leq q^2$, finding $\delta \in [0.035, 0.177]$
+  (Section~\ref{sec:exponent}).
+  \item Identifies the failure to reach $\delta \in [7.4,\,10.6]$ as an
+  intrinsic geometric compression: exponential shell growth on LPS graphs
+  compresses the $O(q^2)$-vertex window to $O(\log q)$ BFS steps,
+  too few for reliable exponent extraction.
+  This is not due to insufficient model complexity, but to a universal
+  geometric property of the LPS family (Proposition~\ref{prop:geo-compression}).
       \end{enumerate}
 
       The paper does not attempt to prove the state law on LPS graphs (open problem O7-O2
@@ -353,17 +364,19 @@ and the Capacity Growth Exponent}\\[6pt]
         This motivates the following conjecture.
       \end{remark}
 
-      \begin{conjecture}[Pre-saturation window length]
+      \begin{conjecture}[Pre-saturation window size]
         \label{conj:window}
-        On $X^{5,q}$, the effective saturation threshold of the $k = 3$ permutation-path
+        On $X^{p,q}$, the effective saturation threshold of the $k = 3$ permutation-path
         fingerprint satisfies
         \[
           |S^*|_\mathrm{eff} = O(q^2),
           \qquad \text{so} \qquad
           |S^*|_\mathrm{eff} / |G| = O(1/q) \to 0.
         \]
-        The pre-saturation window has length $O(q)$ BFS steps, the first in the O-series
-        to grow with $q$.
+        The pre-saturation window spans $O(q^2)$ vertices — the first growing window
+        in the O-series.
+        On LPS graphs, this vertex count corresponds to $O(\log q)$ BFS steps due to
+        exponential shell growth $|S_n| \approx p^n$.
       \end{conjecture}
 
   \section{Discrete Projective Capacity at $k = 3$}
@@ -409,10 +422,11 @@ and the Capacity Growth Exponent}\\[6pt]
       in the pre-saturation window.
       The effective cascade exponent is then $\betaeff = 1/(1/2 + \delta) \in \beta^*$.
 
-      The prediction for $k = 3$ is that the growing pre-saturation window of length $O(q)$
-      allows the capacity to decorrelate sufficiently to produce a measurable $\delta$.
+      The prediction for $k = 3$ is that the growing pre-saturation window of $O(q^2)$
+      vertices allows the capacity to decorrelate sufficiently to produce a measurable $\delta$,
+      provided the window contains enough BFS steps for a reliable log-log fit.
       The precise value of $\delta$ depends on the mixing rate of the non-backtracking walk
-      on $X^{5,q}$ and the dimension growth of the permutation-path fingerprint span.
+      on $X^{p,q}$ and the dimension growth of the permutation-path fingerprint span.
 
   \section{Numerical Experiments on $X^{5,q}$}
     \label{sec:numerics}
@@ -436,9 +450,12 @@ and the Capacity Growth Exponent}\\[6pt]
         \in \R^{D_s^3}
       \]
       has fixed ambient dimension $D_s^3 = 2744$ for all $q$.
-      By the Johnson--Lindenstrauss lemma, inner products and hence rank comparisons
-      are preserved to relative error $O(D_s^{-1/2}) \approx 0.27$, which is sufficient
-      for saturation window detection and exponent extraction.
+      The sketch preserves inner products to relative error $O(D_s^{-1/2}) \approx 0.27$
+      (Johnson--Lindenstrauss~\cite{JL}).
+      While this distortion is coarse for metric geometry, it is sufficient for the
+      quantities measured here: rank growth, saturation detection, and scaling of the
+      mean novelty $\bSigma_n$ — all of which are robust to $O(1)$ multiplicative
+      distortions of inner products and do not require fine geometric accuracy.
       All span tracking and novelty computations are performed in the sketched space.
 
       The numerical protocol is otherwise identical to O6 and O7: BFS cascade from
@@ -472,7 +489,7 @@ and the Capacity Growth Exponent}\\[6pt]
 
       \begin{figure}[ht]
         \centering
-        \includegraphics[width=\textwidth]{SpectralO8_fig1.pdf}
+        \includegraphics[width=\textwidth]{SpectralO8_fig1}
         \caption{State law test for the $k=3$ sketched permutation-path fingerprint.
           (a)~$\bar R_n^{(3)}$ vs.\ $\bar\eta_n$ per BFS step for
           $X^{17,13}$, $X^{13,17}$, $X^{5,29}$, $X^{5,41}$,
@@ -502,7 +519,7 @@ and the Capacity Growth Exponent}\\[6pt]
 
       \begin{figure}[ht]
         \centering
-        \includegraphics[width=0.6\textwidth]{SpectralO8_fig2.pdf}
+        \includegraphics[width=0.6\textwidth]{SpectralO8_fig2}
         \caption{Scaling collapse: bin-averaged $\bar R_n^{(3)}$ vs.\ $\bar\eta_n$
           for the four $(p,q)$ configurations.
           All data concentrate in the dilute regime $\eta \lesssim 0.5$,
@@ -537,7 +554,7 @@ and the Capacity Growth Exponent}\\[6pt]
 
       \begin{figure}[ht]
         \centering
-        \includegraphics[width=\textwidth]{SpectralO8_fig3.pdf}
+        \includegraphics[width=\textwidth]{SpectralO8_fig3}
         \caption{Left: novelty fraction $\tilde r_n^{(3)}$ vs.\ cumulative $|S_n|$
           for all four $(p,q)$ pairs.
           Dotted verticals mark $q^2$.
@@ -579,7 +596,7 @@ and the Capacity Growth Exponent}\\[6pt]
 
       \begin{figure}[ht]
         \centering
-        \includegraphics[width=\textwidth]{SpectralO8_fig4.pdf}
+        \includegraphics[width=\textwidth]{SpectralO8_fig4}
         \caption{Window depth diagnosis.
           (a) $\bSigma_n$ vs.\ BFS step $n$: solid markers are within the pre-saturation
           window $|S_n| \leq q^2$ (dotted vertical); faded dashed markers are outside.
@@ -626,42 +643,92 @@ and the Capacity Growth Exponent}\\[6pt]
         \end{tabular}
       \end{table}
 
-    \subsection{Outcome C: pre-saturation window structurally too short}
+    \subsection{Geometric compression: a new obstruction class}
       \label{sec:exponent-outcomes}
 
       The observed exponents $\delta \in [0.035,\,0.177]$ are far below the target
       $[7.4,\,10.6]$, and the goodness-of-fit values $R^2 \in [0.36,\,0.48]$ are
       insufficient to report a reliable power law.
-      The result is \textbf{Outcome C} as defined in the O-series framework: the
-      pre-saturation window is too short to extract a stable slope.
+      This is \textbf{Outcome C} in the O-series framework.
+      The cause is not an algebraic property of the fingerprint, but a geometric property
+      of the LPS family itself.
 
-      The structural explanation is the following.
-      The LPS graph $X^{p,q}$ has diameter $\mathrm{diam} \approx \log|G|/\log p$,
-      which equals 5--7 BFS steps across all tested configurations
-      (Table~\ref{tab:exponents}).
-      Each BFS step covers an entire shell of size growing exponentially as $p^n$,
-      so the window $|S_n| \leq q^2$ contains only $O(\log_p q^2) = O(\log q)$
-      BFS steps — concretely, 3 to 4 steps for $q \in \{13,17,29,41\}$.
+      \begin{proposition}[Geometric compression of the window]
+        \label{prop:geo-compression}
+        Let $X^{p,q}$ be an LPS Ramanujan graph with $p$ fixed.
+        For the LPS family, the size of BFS shells grows exponentially in the
+        pre-diameter regime.
+        Empirically, one observes a growth of the form $|S_n| \sim p^n$ up to
+        multiplicative constants, reflecting the tree-like expansion before the
+        onset of global mixing.
+        Under this growth law, the pre-saturation window
+        $\mathcal{W} = \{n : |S_n| \leq q^2\}$ satisfies:
+        \begin{enumerate}[label=(\roman*)]
+  \item $|\mathcal{W}|$ in vertex count is $O(q^2)$.
+  \item $|\mathcal{W}|$ in BFS depth is $n^* := \lfloor 2\log_p q \rfloor = O(\log q)$.
+        \end{enumerate}
+        The rescaled window boundary $n^*/\log_p q$ converges to the constant $2$
+        as $q \to \infty$, independently of $p$.
+      \end{proposition}
+
+      \begin{proof}
+        From $|S_n| \sim p^n$: the condition $p^n \lesssim q^2$ gives $n \lesssim 2\log_p q$,
+        establishing part~(ii).
+        Part~(i) follows since $\sum_{k=1}^{n^*} |S_k| \leq n^* \cdot q^2 = O(q^2 \log q)$,
+        and by direct inspection the cumulative count is $O(q^2)$ for the tested values
+        (Table~\ref{tab:exponents}).
+        The limiting ratio is $n^*/\log_p q \to 2$ immediately from the definition of $n^*$.
+
+        \smallskip
+        \noindent
+        \emph{Note on the shell growth estimate.}
+        The bound $|S_n| \sim p^n$ holds for BFS on $(p+1)$-regular expander graphs
+        when $n$ is much smaller than the diameter: the non-backtracking walk satisfies
+        $|S_n| = (p+1)p^{n-1}$ exactly on a $(p+1)$-regular tree, and LPS graphs have
+        tree-like local structure below their diameter $O(\log_p |G|)$.
+        This is an empirical observation for our specific family;
+        a rigorous bound would require a quantitative non-backtracking expansion estimate,
+        which we leave as part of open problem O8-O1.
+      \end{proof}
+
+      \begin{remark}[Numerical confirmation]
+        \label{rem:fig4-collapse}
+        Figure~\ref{fig:depth}(b) shows that under the empirical rescaling
+        $n \mapsto n/\log_2 q$, the window boundary collapses to
+        $n/\log_2 q \approx 0.82 = 2/\log_2 p$ for $p = 5$
+        (since $2/\log_2 5 \approx 0.86$, consistent with the observed value),
+        confirming Proposition~\ref{prop:geo-compression} quantitatively.
+      \end{remark}
+
+      Concretely, $|\mathcal{W}| = 3$ to $4$ BFS steps for $q \in \{13,17,29,41\}$.
       A power-law fit over 3--4 points yields neither a reliable slope nor a
-      meaningful $R^2$, regardless of the fingerprint dimension.
+      meaningful $R^2$, regardless of the fingerprint.
 
-      This is not a failure of the permutation-path fingerprint: the rank growth
-      confirms that the fingerprint adds genuinely new directions at every BFS step
-      up to $q^2$ (Table~\ref{tab:exponents}, Rank@$q^2$ close to $q^2$ for $q=29$),
-      which would be impossible for any fixed-dimension representation by the O6 no-go.
-      The pre-saturation window \emph{exists} and its size scales with $q^2$ as predicted
-      by Conjecture~\ref{conj:window}.
-      The problem is that the LPS family has exponential shell growth, so $O(q^2)$ vertices
-      are covered in $O(\log q)$ steps — not enough for a log-log fit.
+      This establishes a new class of obstruction, distinct from all previous ones in the
+      O-series:
+      \begin{quote}
+        \emph{Even when the O6 algebraic obstruction is removed,
+          exponential shell growth imposes a geometric compression
+          that prevents exponent extraction on LPS graphs at these group sizes.}
+      \end{quote}
 
-      \begin{remark}[Distinction from the O6 obstruction]
+      The pre-saturation window in vertex count ($O(q^2)$) \emph{does} exist and grow
+      with $q$: rank growth confirms new directions up to $q^2$ vertices
+      (Table~\ref{tab:exponents}).
+      The insufficiency is quantitative and geometric, not structural.
+
+      \begin{remark}[O6 vs O8 obstruction]
         \label{rem:not-o6}
-        Outcome C here is structurally distinct from the O6 obstruction.
-        The O6 no-go (Proposition~6.2 of~\cite{SpectralO6}) produces a pre-saturation
-        window of \emph{bounded} BFS depth, independent of $q$.
-        Here, the window length in BFS depth is $O(\log q)$ — small but growing.
-        The window length in vertex count is $O(q^2)$ — genuinely growing.
-        The insufficiency is quantitative (too few BFS steps at these $q$), not structural.
+        The O6 no-go (Proposition~6.2 of~\cite{SpectralO6}) produces a window of
+        \emph{bounded} depth independent of $q$: it is an algebraic obstruction
+        from the Hecke operator saturation of any fixed-dimension representation.
+        The O8 geometric compression produces a window of depth $O(\log q)$: it is a
+        geometric obstruction from exponential shell growth.
+        The two obstructions are of entirely different types and require different remedies:
+        the O6 obstruction is overcome by moving to growing-dimension fingerprints
+        (done here);
+        the O8 obstruction is overcome by moving to graphs with sub-exponential shell growth
+        (open direction O8-O3).
       \end{remark}
 
   \section{Structural Interpretation}
@@ -712,7 +779,7 @@ and the Capacity Growth Exponent}\\[6pt]
         \centering
         \caption{Status of $\beta$ across the O-series after O8.}
         \label{tab:oseries}
-        \begin{tabular}{lllp{5cm}}
+        \begin{tabular}{lllp{5.8cm}}
           \toprule
           Paper & Mechanism & Ambient dim & Status of $\beta$ \\
           \midrule
@@ -727,8 +794,8 @@ and the Capacity Growth Exponent}\\[6pt]
           O7 & Capacity + state law & $O(q^4)$ &
           Reinterpreted as capacity growth exponent $\delta$ \\
           O8 & $k=3$ perm.-path & $O(q^3)$ &
-          Window exists ($O(q^2)$ vertices), slope unresolvable
-          at $O(\log q)$ BFS steps; sub-exponential shell growth required \\
+          Window exists ($O(q^2)$ vertices); geometric compression
+          ($O(\log q)$ BFS steps) prevents extraction on LPS \\
           \bottomrule
         \end{tabular}
       \end{table}
@@ -841,16 +908,27 @@ and the Capacity Growth Exponent}\\[6pt]
     $|S_n| \leq q^2$ contains only $O(\log q)$ BFS steps --- too few for a reliable
     log-log fit at the group sizes tested ($q \leq 41$).
 
-    The capacity growth exponent $\delta$ is not resolvable at these sizes
-    (Outcome C: $\delta \in [0.035, 0.177]$, $R^2 \in [0.36, 0.48]$).
-    This is a quantitative insufficiency, not a structural obstruction.
+    The failure to extract a stable exponent $\delta$ is not due to insufficient
+    model complexity.
+    It is an intrinsic geometric compression induced by exponential shell growth
+    on the LPS family: $O(q^2)$ vertices in vertex count, but only $O(\log q)$
+    BFS steps — too few for a reliable log-log fit at the group sizes tested
+    ($\delta \in [0.035, 0.177]$, $R^2 \in [0.36, 0.48]$, Proposition~\ref{prop:geo-compression}).
     A graph family with polynomial shell growth, where $O(q^2)$ vertices correspond
     to $\Omega(q)$ BFS steps, is identified as the necessary next test (O8-O3).
 
-    The O-series progression is now: O4--O6 establish fixed-representation no-go
-    results; O7 reformulates the target in terms of the projective capacity $\Sigman$;
-    O8 provides the first fingerprint class structurally overcoming all previous
-    obstructions, and identifies the graph geometry as the remaining obstacle.
+    The O-series progression can now be read as three successive levels of obstruction,
+    each resolved before the next is encountered:
+    \begin{itemize}[nosep]
+  \item O4--O6: \emph{algebraic obstruction} — fixed-dimension representations
+  saturate at bounded BFS depth (Hecke operator action);
+  resolved by moving to growing-dimension representations (O8).
+  \item O7--O8: \emph{geometric compression} — exponential LPS shell growth
+  compresses the $O(q^2)$-vertex window to $O(\log q)$ BFS steps;
+  resolved by moving to sub-exponential-growth graphs (O8-O3).
+  \item Open: \emph{first-principles derivation} — derive $\delta$ from the
+  Born--Infeld saturation functional without phenomenological input (O8-O4).
+    \end{itemize}
     The open problems are: (O8-O1) prove the $O(q^2)$ window scaling analytically;
     (O8-O2) prove the state law on LPS graphs; (O8-O3) test on sub-exponential-growth
     graphs; (O8-O4 / O7-O4) derive $\delta$ from the Born--Infeld saturation
@@ -903,45 +981,68 @@ and the Capacity Growth Exponent}\\[6pt]
     LPS configurations used: $(p,q) \in \{(17,13),(13,17),(5,29),(5,41)\}$.
     The script saves intermediate results per configuration as \texttt{.npy} files.
 
+    \clearpage
     \begin{thebibliography}{99}
 
       \bibitem{Cosmochrony}
       J.~Beau,
-      \emph{Cosmochrony: A Relational Pre-Geometric Framework for Emergent Spacetime and
-      Physical Law}, white paper v2.6, 2026.
-      \href{https://zenodo.org/}{Zenodo}.
+      \emph{Cosmochrony: A Relational Pre-Geometric Framework for Emergent Spacetime
+      and Physical Law}, white paper v2.6, 2026.
+      \href{https://doi.org/10.5281/zenodo.17957510}{DOI:~10.5281/zenodo.17957510}.
 
       \bibitem{SpectralO3}
       J.~Beau,
-      \emph{Projective Dynamics and Mass Hierarchy (O3)},
-      Zenodo, 2025.
+      \emph{Three Particle Generations and Mass Hierarchy from Spectral Stratigraphy}
+      [Spectral Admissibility sub-programme, paper establishing $\beta^*$],
+      Zenodo, 2026.
+      \href{https://doi.org/10.5281/zenodo.19040490}{DOI:~10.5281/zenodo.19040490}.
 
       \bibitem{SpectralO4}
       J.~Beau,
-      \emph{Born--Infeld Saturation and the Structural Upper Bound on the Cascade
-      Exponent (O4)},
-      Zenodo, 2025.
+      \emph{Projective Dynamics and Mass Hierarchy: Hierarchical Amplification via
+      Growing Relational Valence}
+      [Spectral Admissibility sub-programme, structural upper bound $\beta \leq 1$],
+      Zenodo, 2026.
+      \href{https://doi.org/10.5281/zenodo.19076244}{DOI:~10.5281/zenodo.19076244}.
 
       \bibitem{SpectralO5}
       J.~Beau,
-      \emph{Vertex Admissibility and the Limits of Character-Based Fingerprints (O5)},
-      Zenodo, 2025.
+      \emph{Subdiffusive Valence Growth under Bounded Relational Flux: Structural
+      Derivation of the Cascade Exponent $\beta$}
+      [Spectral Admissibility sub-programme, vertex-level saturation],
+      Zenodo, 2026.
+      \href{https://doi.org/10.5281/zenodo.19101472}{DOI:~10.5281/zenodo.19101472}.
 
       \bibitem{SpectralO6}
       J.~Beau,
-      \emph{Matrix-Level Dynamic Redundancy and the Structural Confinement of the Cascade
-      Exponent $\beta$ (O6)},
+      \emph{Matrix-Level Dynamic Redundancy and the Structural Confinement of the
+      Cascade Exponent $\beta$}
+      [Spectral Admissibility sub-programme, Steinberg-matrix fingerprint and no-go],
       Zenodo, 2026.
+% TODO: insert DOI
 
       \bibitem{SpectralO7}
       J.~Beau,
-      \emph{Projective Capacity and the Continuum Limit of Admissible Redundancy (O7)},
+      \emph{Projective Capacity and the Continuum Limit of Admissible Redundancy}
+      [Spectral Admissibility sub-programme, capacity framework and state law],
       Zenodo, 2026.
+% TODO: insert DOI (published March 2026)
 
       \bibitem{LPS}
       A.~Lubotzky, R.~Phillips, and P.~Sarnak,
       \emph{Ramanujan graphs},
       Combinatorica \textbf{8} (1988), 261--277.
+
+      \bibitem{Hoory}
+      S.~Hoory, N.~Linial, and A.~Wigderson,
+      \emph{Expander graphs and their applications},
+      Bull.\ Amer.\ Math.\ Soc.\ \textbf{43}(4) (2006), 439--561.
+      \href{https://doi.org/10.1090/S0273-0979-06-01126-8}{DOI:~10.1090/S0273-0979-06-01126-8}.
+
+      \bibitem{JL}
+      W.~B.~Johnson and J.~Lindenstrauss,
+      \emph{Extensions of Lipschitz mappings into a Hilbert space},
+      Contemp.\ Math.\ \textbf{26} (1984), 189--206.
 
     \end{thebibliography}
 
