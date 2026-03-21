@@ -30,7 +30,7 @@ where $\rho_{\mathrm{perm}}$ is the permutation representation of
 $PSL(2,\mathbb{F}_q)$ on $\mathbb{P}^1(\mathbb{F}_q)$ and
 $\gamma=(v_0,v_1,v_2,v_3)$ is a non-backtracking path of length $3$. This gives
 an ambient dimension $O(q^3)$ that grows with $q$, thereby escaping the O6
-fixed-representation no-go. :contentReference[oaicite:0]{index=0}
+fixed-representation no-go.
 
 # Core Result
 
@@ -54,14 +54,14 @@ the analysis shows that:
 - but on LPS graphs this $O(q^2)$-vertex window is compressed to only
   $O(\log q)$ BFS steps by exponential shell growth
 - as a consequence, the available fit window is too short to extract a stable
-  exponent $\delta$ even though the fingerprint itself is structurally adequate :contentReference[oaicite:1]{index=1}
+  exponent $\delta$ even though the fingerprint itself is structurally adequate
 
 The observed values
 
 $\delta \in [0.035, 0.177]$
 
 are therefore not interpreted as the true asymptotic exponent, but as the
-signature of a geometrically compressed measurement window. :contentReference[oaicite:2]{index=2}
+signature of a geometrically compressed measurement window.
 
 # Structural Role of O8
 
@@ -76,13 +76,13 @@ The logical chain is now:
 - **O6**: fixed finite-dimensional fingerprints fail for algebraic reasons
 - **O7**: the relevant observable is projective capacity, not raw redundancy
 - **O8**: even with a growing fingerprint space, exponential shell growth on
-  LPS graphs geometrically compresses the observable window :contentReference[oaicite:3]{index=3}
+  LPS graphs geometrically compresses the observable window
 
 The failure is therefore no longer attributable to insufficient fingerprint
 complexity, but to an intrinsic mismatch between:
 
 - a pre-saturation regime growing in **vertex count**
-- and a graph geometry whose BFS shells grow too quickly in **depth** :contentReference[oaicite:4]{index=4}
+- and a graph geometry whose BFS shells grow too quickly in **depth**
 
 # What O8 Adds
 
@@ -98,7 +98,7 @@ O8 introduces several decisive new structural results:
 - a clear separation between:
     - **algebraic saturation** from fixed-dimensional Hecke dynamics
     - **geometric compression** from expander shell growth
-    - the still-open derivation of the true asymptotic exponent $\delta$ :contentReference[oaicite:5]{index=5}
+    - the still-open derivation of the true asymptotic exponent $\delta$
 
 # Interpretation of the Obstruction
 
@@ -121,7 +121,7 @@ joint problem of:
 
 - admissible state-space growth
 - capacity dynamics
-- and graph geometry :contentReference[oaicite:6]{index=6}
+- and graph geometry
 
 In this sense, the exponent $\delta$ is not simply a combinatorial property of a
 fingerprint, but a dynamical quantity whose observability depends on the depth
@@ -143,7 +143,7 @@ O8 preserves all previous structural results:
 
 It does not modify the mass-hierarchy target itself.
 Instead, it shows that the next obstruction lies in the geometry of the graph
-family used to probe the growing fingerprint. :contentReference[oaicite:7]{index=7}
+family used to probe the growing fingerprint.
 
 # Conceptual Structure
 
@@ -162,7 +162,7 @@ O8 advances the structural chain as follows:
 
 The programme now excludes not only static finite-dimensional encodings, but
 also the LPS expander geometry itself as a suitable setting for direct
-measurement of $\delta$ once the observable window is expressed in BFS depth. :contentReference[oaicite:8]{index=8}
+measurement of $\delta$ once the observable window is expressed in BFS depth.
 
 # What O8 Resolves
 
@@ -176,7 +176,7 @@ O8 provides:
 - a proof-of-principle that exponent extraction can still fail for purely
   **geometric** reasons
 - a precise localisation of the remaining open problem: one must now change not
-  only the fingerprint, but also the graph-growth regime :contentReference[oaicite:9]{index=9}
+  only the fingerprint, but also the graph-growth regime
 
 # Residual Open Problem
 
