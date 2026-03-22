@@ -124,14 +124,14 @@
   \item O6~\cite{SpectralO6}: the Steinberg-matrix fingerprint saturates at BFS depth 6,
   independent of $q$; Proposition~6.2 of~\cite{SpectralO6} formalises the universal
   no-go for all fixed finite-dimensional representations.
-  \item O7~\cite{SpectralO7}: the discrete projective capacity $\Sigman(x)$ is identified
+  \item O7~\cite{Beau2026a11}: the discrete projective capacity $\Sigman(x)$ is identified
   as the correct observable; $\beta$ is reinterpreted as the exponent governing
   $\bSigma_n \sim p(n)^{-\delta}$; the state law $\Rn \approx \Phi(\etan)$
   with $\Phi(\eta) = 1/\sqrt{1+\eta^2}$ is established exactly in the reduced model
   and supported numerically.
     \end{itemize}
 
-    O7 concludes (open problem O7-O5, Table~2 of~\cite{SpectralO7}) that O8 must test
+    O7 concludes (open problem O7-O5, Table~2 of~\cite{Beau2026a11}) that O8 must test
     $k = 3$ with an ambient dimension growing with $q$, and check whether
     $\delta \in [7.4,\,10.6]$ is reachable in this regime.
     The present paper addresses this directly.
@@ -177,7 +177,7 @@
     \end{enumerate}
 
     The paper does not attempt to prove the state law on LPS graphs (open problem O7-O2
-    of~\cite{SpectralO7}), nor to derive $\delta$ from first principles (open problem O7-O4).
+    of~\cite{Beau2026a11}), nor to derive $\delta$ from first principles (open problem O7-O4).
     These remain open directions, identified precisely in Section~\ref{sec:open}.
 
   \section{Background and Notation}
@@ -202,7 +202,7 @@
   \subsection{Discrete projective capacity and the state law (O7)}
     \label{sec:background-o7}
 
-    We recall the key objects introduced in O7~\cite{SpectralO7}.
+    We recall the key objects introduced in O7~\cite{Beau2026a11}.
 
     \begin{definition}[Effective novelty and capacity, O7]
       \label{def:capacity-o7}
@@ -237,7 +237,7 @@
       \label{eq:capacity-growth}
     \end{equation}
     in the pre-saturation window, and the effective cascade exponent is
-    $\betaeff = 1/(1/2 + \delta)$ (equation~(10) of O7~\cite{SpectralO7}).
+    $\betaeff = 1/(1/2 + \delta)$ (equation~(10) of O7~\cite{Beau2026a11}).
     The target condition is $\delta \in [7.4,\,10.6]$, corresponding to
     $\betaeff \in \beta^* = (0.09, 0.13)$.
 
@@ -412,7 +412,7 @@
     \begin{remark}[Scope of the conjecture]
       \label{rem:conjecture-scope}
       Conjecture~\ref{conj:statelaw-k3} is the $k = 3$ instance of open problem O7-O2
-      of~\cite{SpectralO7}.
+      of~\cite{Beau2026a11}.
       Its proof requires a quantitative bound on the deviation of the path fingerprint
       distribution from the uniform measure on the LPS orbit, which in turn requires
       detailed control of the non-backtracking walk distribution on $X^{5,q}$.
@@ -890,7 +890,7 @@
     \textbf{O8-O4} (First-principles derivation of $\delta$).
     Derive the exponent $\delta$ from the spectral structure of $G = \PSL(2, \F_q)$
     and the Born--Infeld saturation functional.
-    This is the $k=3$ instance of open problem O7-O4 of~\cite{SpectralO7}.
+    This is the $k=3$ instance of open problem O7-O4 of~\cite{Beau2026a11}.
 
   \section{Conclusion}
   \label{sec:conclusion}
@@ -966,7 +966,7 @@
   \section{Coarse-Graining Construction}
   \label{app:coarse}
 
-  The coarse-graining at scale $\ell$ follows Appendix~B of O7~\cite{SpectralO7}
+  The coarse-graining at scale $\ell$ follows Appendix~B of O7~\cite{Beau2026a11}
   exactly.
   Cells $\mathcal{B}_\ell(x)$ are balls of radius $\ell$ in the BFS metric on $X^{5,q}$,
   and the capacity $\Sigman(x)$ is the average effective novelty of paths in
@@ -991,49 +991,7 @@
   \clearpage
   \begin{thebibliography}{99}
 
-    \bibitem{Cosmochrony}
-    J.~Beau,
-    \emph{Cosmochrony: A Relational Pre-Geometric Framework for Emergent Spacetime
-    and Physical Law}, white paper v2.6, 2026.
-    \href{https://doi.org/10.5281/zenodo.17957510}{DOI:~10.5281/zenodo.17957510}.
-
-    \bibitem{SpectralO3}
-    J.~Beau,
-    \emph{Three Particle Generations and Mass Hierarchy from Spectral Stratigraphy}
-    [Spectral Admissibility sub-programme, paper establishing $\beta^*$],
-    Zenodo, 2026.
-    \href{https://doi.org/10.5281/zenodo.19040490}{DOI:~10.5281/zenodo.19040490}.
-
-    \bibitem{SpectralO4}
-    J.~Beau,
-    \emph{Projective Dynamics and Mass Hierarchy: Hierarchical Amplification via
-    Growing Relational Valence}
-    [Spectral Admissibility sub-programme, structural upper bound $\beta \leq 1$],
-    Zenodo, 2026.
-    \href{https://doi.org/10.5281/zenodo.19076244}{DOI:~10.5281/zenodo.19076244}.
-
-    \bibitem{SpectralO5}
-    J.~Beau,
-    \emph{Subdiffusive Valence Growth under Bounded Relational Flux: Structural
-    Derivation of the Cascade Exponent $\beta$}
-    [Spectral Admissibility sub-programme, vertex-level saturation],
-    Zenodo, 2026.
-    \href{https://doi.org/10.5281/zenodo.19101472}{DOI:~10.5281/zenodo.19101472}.
-
-    \bibitem{SpectralO6}
-    J.~Beau,
-    \emph{Matrix-Level Dynamic Redundancy and the Structural Confinement of the
-    Cascade Exponent $\beta$}
-    [Spectral Admissibility sub-programme, Steinberg-matrix fingerprint and no-go],
-    Zenodo, 2026.
-% TODO: insert DOI
-
-    \bibitem{SpectralO7}
-    J.~Beau,
-    \emph{Projective Capacity and the Continuum Limit of Admissible Redundancy}
-    [Spectral Admissibility sub-programme, capacity framework and state law],
-    Zenodo, 2026.
-% TODO: insert DOI (published March 2026)
+    \input{bib-beau}
 
     \bibitem{LPS}
     A.~Lubotzky, R.~Phillips, and P.~Sarnak,
