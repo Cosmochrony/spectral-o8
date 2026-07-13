@@ -1,5 +1,5 @@
 This repository contains the source of the **O8** Cosmochrony paper  
-[*Three-Step Path Fingerprints on LPS Graphs and the Capacity Growth Exponent*](out/SpectralO8.pdf).
+*Three-Step Path Fingerprints on LPS Graphs and the Capacity Growth Exponent*.
 
 This work extends the **spectral admissibility sub-programme** by testing the
 first fingerprint class that escapes the fixed finite-dimensional obstruction
