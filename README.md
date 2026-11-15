@@ -244,7 +244,7 @@ It does not assume:
 
 # Reproduction
 
-Table 3 and Figures 1-4 are produced by `code/SpectralO8.py` (deterministic, sketch seed 42, about 30 s on a
+Table 1 and Figures 1-4 are produced by `code/SpectralO8.py` (deterministic, sketch seed 42, about 30 s on a
 laptop). From a fresh clone:
 
 ```bash
@@ -254,7 +254,7 @@ uv run --no-project --python 3.14 --with-requirements requirements.txt python Sp
 
 `code/requirements.txt` pins numpy 2.5.5, scipy 1.18.1 and matplotlib 3.11.2 (Python 3.14). The script writes
 `SpectralO8_fig1.pdf`-`SpectralO8_fig4.pdf` and one `SpectralO8_<p>_<q>.npy` result file per configuration into
-the working directory, and prints Table 3: $\delta$, the upper bound $1/(1/2+\delta)$ on $\beta_{\mathrm{eff}}$ and $R^2$
+the working directory, and prints Table 1: $\delta$, the upper bound $1/(1/2+\delta)$ on $\beta_{\mathrm{eff}}$ and $R^2$
 for $(p,q)\in\{(17,13),(13,17),(5,29),(5,41)\}$.
 
 # Repository Structure
