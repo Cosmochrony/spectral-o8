@@ -3,12 +3,15 @@ This repository contains the source of the **O8** Cosmochrony paper
 
 This work extends the **spectral admissibility sub-programme** by testing the
 first fingerprint class that escapes the fixed finite-dimensional obstruction
-established in **O6**. Its objective is to determine whether the target capacity
-growth exponent
+established in **O6**. Its objective is to determine whether a capacity growth exponent in
+the range
 
-$\delta^\* \in [7.4, 10.6]$
+$\delta \in [7.4, 10.6]$
 
-can emerge once the admissible state space grows with $q$.
+can emerge once the admissible state space grows with $q$. In that range the upper bound
+$\beta \le 1/(1/2+\delta)$, which O6 proves under an unestablished effective growth hypothesis,
+lies inside the phenomenological window $\beta^\*=(0.09,0.13)$; the bound does not select
+$\beta^\*$, and $\beta^\*$ is compatible with it only if $\delta<10.611$.
 
 While **O6** proves that no fixed finite-dimensional fingerprint can sustain a
 long enough pre-saturation regime, **O7** identifies the correct observable as
@@ -217,7 +220,7 @@ but also:
    long enough to support exponent extraction
 
 4. **First-principles derivation of $\delta$**  
-   Derive the target exponent from the spectral and Born--Infeld structure
+   Derive the exponent $\delta$ from the spectral and Born--Infeld structure
    directly, without phenomenological input
 
 5. **Beyond the LPS setting**  

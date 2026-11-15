@@ -57,19 +57,20 @@
 \small Independent Researcher\\
 \small \href{mailto:jerome.beau@cosmochrony.org}{jerome.beau@cosmochrony.org}}
 
-\date{March 2026}
+\date{March 2026\\[2pt]\small Version 1.1}
 
 \begin{document}
 
   \maketitle
 
   \begin{abstract}
-    The Cosmochrony spectral cascade programme targets a capacity growth exponent
-    $\delta \in [7.4,\,10.6]$, identified in O7 as the condition under which the cascade exponent
-    $\beta$ falls within the phenomenological window $\beta^* \in (0.09, 0.13)$ fixed by
-    charged-lepton mass ratios.
+    The Cosmochrony spectral cascade programme studies a capacity growth exponent $\delta$.
+    Under an unestablished effective growth hypothesis of O6, the cascade exponent obeys only the
+    upper bound $\beta \leq 1/(1/2+\delta)$; this bound lies inside the phenomenological window
+    $\beta^* = (0.09, 0.13)$ fixed by charged-lepton mass ratios when $\delta \in [7.4,\,10.6]$, it does
+    not select $\beta^*$, and $\beta^*$ is compatible with it only if $\delta < 10.611$.
     O7 proved that $k = 2$ adjoint fingerprints on LPS graphs $X^{5,q}$ saturate within
-    the first BFS step, and reformulated the target as: find a fingerprint scale $\ell$
+    the first BFS step, and reformulated this range as: find a fingerprint scale $\ell$
     and depth $k$ such that the discrete projective capacity decays as
     $\bSigma_n \sim p(n)^{-\delta}$ with $\delta \in [7.4,\,10.6]$ in a measurable
     pre-saturation window.
@@ -105,7 +106,7 @@
   \section{Introduction}
   \label{sec:intro}
 
-  \subsection{The O-series programme and the target exponent}
+  \subsection{The O-series programme and the exponent range}
     \label{sec:intro-programme}
 
     The spectral cascade programme of Cosmochrony~\cite{Cosmochrony} pursues a single
@@ -237,10 +238,11 @@
       \bSigma_n \sim p(n)^{-\delta}
       \label{eq:capacity-growth}
     \end{equation}
-    in the pre-saturation window, and the effective cascade exponent is
-    $\betaeff = 1/(1/2 + \delta)$ (equation~(10) of O7~\cite{Beau2026a11}).
-    The target condition is $\delta \in [7.4,\,10.6]$, corresponding to
-    $\betaeff \in \beta^* = (0.09, 0.13)$.
+    in the pre-saturation window, and, under O6's unestablished effective growth
+    hypothesis~(G$_R$), the effective cascade exponent satisfies only the upper bound
+    $\betaeff \leq 1/(1/2 + \delta)$ (equation~(10) of O7~\cite{Beau2026a11}).
+    For $\delta \in [7.4,\,10.6]$ this bound lies inside $\beta^* = (0.09, 0.13)$; it does not select
+    $\beta^*$, and $\beta^*$ is compatible with it only if $\delta < 10.611$.
 
   \subsection{The O6 obstruction and why $k = 3$ adjoint fingerprints fail}
     \label{sec:background-o6}
@@ -420,15 +422,16 @@
       The present paper tests it numerically; the proof is left open.
     \end{remark}
 
-  \subsection{Capacity growth and the target exponent}
+  \subsection{Capacity growth and the exponent range}
     \label{sec:capacity-growth}
 
-    In the O7 framework, the target condition $\delta \in [7.4,\,10.6]$ is equivalent to:
+    In the O7 framework, the range $\delta \in [7.4,\,10.6]$ corresponds to:
     \[
       \bSigma_n \sim p(n)^{-\delta}, \quad \delta \in [7.4,\,10.6],
     \]
     in the pre-saturation window.
-    The effective cascade exponent is then $\betaeff = 1/(1/2 + \delta) \in \beta^*$.
+    Under~(G$_R$), the effective cascade exponent then satisfies $\betaeff \leq 1/(1/2 + \delta)$, an
+    upper bound lying inside $\beta^*$; no lower bound on $\betaeff$ follows.
 
     The prediction for $k = 3$ is that the growing pre-saturation window of $O(q^2)$
     vertices allows the capacity to decorrelate sufficiently to produce a measurable $\delta$,
@@ -507,7 +510,8 @@
         (c)~Mean capacity $\bSigma_n$ vs.\ cumulative $|S_n|$ (log-log);
         dashed lines are power-law fits over $|S_n| \leq q^2$;
         dotted verticals mark $q^2$.
-        (d)~Parameter table (see also Table~\ref{tab:exponents}).}
+        (d)~Parameter table (see also Table~\ref{tab:exponents}); its $\betaeff$ column is the upper bound
+        $1/(1/2+\delta)$ implied under~(G$_R$), not an attained exponent.}
       \label{fig:statelaw}
     \end{figure}
 
@@ -626,21 +630,21 @@
     We use ordinary least squares on log-transformed data.
 
     Table~\ref{tab:exponents} reports the results for all four configurations.
-    The rank at the boundary $|S_n| = q^2$, the fitted $\delta$, $\betaeff$, and $R^2$
-    are given.
+    The rank at the boundary $|S_n| = q^2$, the fitted $\delta$, the implied upper bound on $\betaeff$,
+    and $R^2$ are given.
 
     \begin{table}[ht]
       \centering
       \caption{Numerical results for the $k=3$ sketched permutation-path fingerprint.
       Rank@$q^2$: sketch rank at first step with $|S_n| \geq q^2$.
         $\delta$: log-log slope of $\bSigma_n$ vs.\ $|S_n|$ in window $|S_n| \leq q^2$.
-        $\betaeff = 1/(1/2+\delta)$.
-        Target: $\delta \in [7.4,\,10.6]$, i.e.\ $\betaeff \in \beta^*$.
+        $\betaeff \leq$: the upper bound $1/(1/2+\delta)$ implied under~(G$_R$).
+        Range: $\delta \in [7.4,\,10.6]$, where this bound lies inside $\beta^*$.
         ``Sketch sat.''\ indicates the sketch space saturated before exhausting the group.}
       \label{tab:exponents}
       \begin{tabular}{cccccccc}
         \toprule
-        $(p,q)$ & $|G|$ & $q^2$ & \text{Rank@}$q^2$ & $\delta$ & $\betaeff$ & $R^2$
+        $(p,q)$ & $|G|$ & $q^2$ & \text{Rank@}$q^2$ & $\delta$ & $\betaeff \leq$ & $R^2$
         & Note \\
         \midrule
         $(17,13)$ & 1092  & 169  & 68   & 0.177 & 1.48 & 0.36 & sketch OK              \\
@@ -654,7 +658,7 @@
   \subsection{Geometric compression: a new obstruction class}
     \label{sec:exponent-outcomes}
 
-    The observed exponents $\delta \in [0.035,\,0.177]$ are far below the target
+    The observed exponents $\delta \in [0.035,\,0.177]$ are far below the range
     $[7.4,\,10.6]$, and the goodness-of-fit values $R^2 \in [0.36,\,0.48]$ are
     insufficient to report a reliable power law.
     This is \textbf{Outcome C} in the O-series framework.
