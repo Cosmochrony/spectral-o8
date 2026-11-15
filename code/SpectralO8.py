@@ -405,7 +405,7 @@ def run_one(p, q, verbose=True):
         w_mask[:first_zero] = True
         w_mask &= (sigmas > 0) & np.isfinite(sigmas)
 
-    delta = beta_eff = r2_fit = np.nan
+    delta = beta_bound = r2_fit = np.nan
     if w_mask.sum() >= FIT_MIN_PTS:
         lx  = np.log(cumuls[w_mask])
         ly  = np.log(sigmas[w_mask])
@@ -417,7 +417,8 @@ def run_one(p, q, verbose=True):
         ss_t  = float(np.sum((ly - ly.mean())**2))
         r2_fit = 1.0 - ss_r / (ss_t + 1e-30)
         if np.isfinite(delta) and delta > -0.5:
-            beta_eff = 1.0 / (0.5 + delta)
+            # Upper bound beta_eff <= 1/(1/2 + delta), under O6's (G_R); not an attained exponent.
+            beta_bound = 1.0 / (0.5 + delta)
 
     # rank at first step where cumul >= q^2
     rank_at_q2 = next((int(rk) for cu, rk in zip(cumuls, ranks) if cu >= q**2),
@@ -428,7 +429,7 @@ def run_one(p, q, verbose=True):
                   float(cumuls[-1]))
 
     if verbose:
-        print(f"  => delta={delta:.4f}  beta_eff={beta_eff:.4f}  "
+        print(f"  => delta={delta:.4f}  beta_eff<={beta_bound:.4f}  "
               f"R2={r2_fit:.4f}  rank@q^2={rank_at_q2}  q^2={q**2}")
 
     return dict(
@@ -437,7 +438,7 @@ def run_one(p, q, verbose=True):
         cumuls=cumuls, shells=shells,
         sigmas=sigmas, etas=etas, Rs=Rs,
         r_tildes=r_tildes_arr, ranks=ranks,
-        delta=delta, beta_eff=beta_eff, r2=r2_fit,
+        delta=delta, beta_bound=beta_bound, r2=r2_fit,
         s_star=s_star, rank_at_q2=rank_at_q2, fit_mask=w_mask,
     )
 
@@ -490,7 +491,7 @@ def fig1(results, path="SpectralO8_fig1.pdf"):
         ax_c.axvline(r['q']**2, color=col, ls=':', alpha=0.5)
         # table row
         de = f"{r['delta']:.3f}"   if np.isfinite(r['delta'])    else "--"
-        be = f"{r['beta_eff']:.4f}" if np.isfinite(r['beta_eff']) else "--"
+        be = f"{r['beta_bound']:.4f}" if np.isfinite(r['beta_bound']) else "--"
         r2 = f"{r['r2']:.3f}"     if np.isfinite(r['r2'])       else "--"
         rows.append([str(pq[0]), str(pq[1]), str(r['N']),
                      str(r['ambient']), str(r['rank_at_q2']),
@@ -511,7 +512,7 @@ def fig1(results, path="SpectralO8_fig1.pdf"):
     ax_d.axis('off')
     col_labels = ['$p$', '$q$', '$|G|$', 'ambient',
                   r'rank@$q^2$', r'$q^2$',
-                  r'$\delta$', r'$\beta_\mathrm{eff}$', r'$R^2$']
+                  r'$\delta$', r'$\beta_\mathrm{eff}\leq$', r'$R^2$']
     if rows:
         tab = ax_d.table(cellText=rows, colLabels=col_labels,
                          loc='center', cellLoc='center')
@@ -684,20 +685,21 @@ def print_table(results):
     print(f"{'Table 1: k=3 permutation fingerprint -- capacity exponent delta':^86}")
     print(sep)
     hdr = (f"{'(p,q)':>9}  {'|G|':>7}  {'ambient':>8}  {'sketch':>7}  "
-           f"{'rank@q2':>8}  {'q^2':>6}  {'delta':>7}  {'beta_eff':>9}  {'R^2':>6}")
+           f"{'rank@q2':>8}  {'q^2':>6}  {'delta':>7}  {'beta_eff<=':>10}  {'R^2':>6}")
     print(hdr); print("-" * 86)
     for r in results:
         if r is None:
             continue
         pq  = (r['p'], r['q'])
         de  = f"{r['delta']:.3f}"    if np.isfinite(r['delta'])    else "--"
-        be  = f"{r['beta_eff']:.4f}" if np.isfinite(r['beta_eff']) else "--"
+        be  = f"{r['beta_bound']:.4f}" if np.isfinite(r['beta_bound']) else "--"
         r2  = f"{r['r2']:.3f}"      if np.isfinite(r['r2'])       else "--"
         print(f"{str(pq):>9}  {r['N']:>7}  {r['ambient']:>8}  "
               f"{r['dim_sk']:>7}  {r['rank_at_q2']:>8}  {r['q']**2:>6}  "
               f"{de:>7}  {be:>9}  {r2:>6}")
     print(sep)
-    print("  Target: delta in [7.4, 10.6]  =>  beta_eff in (0.09, 0.13)")
+    print("  Under O6's (G_R): beta_eff <= 1/(1/2 + delta); beta* = (0.09, 0.13) needs delta < 10.611;")
+    print("  for delta in [7.4, 10.6] the bound lies inside beta*, without selecting it.")
     print("  Result: Outcome C -- window exists (O(q^2) vertices) but spans")
     print("          only O(log q) BFS steps (exponential LPS shell growth).")
     print()
