@@ -136,7 +136,8 @@ O8 preserves all previous structural results:
 - three-level ADE stratigraphy from **Step 3**
 - projective dynamics and support contraction from **O1**
 - hierarchical amplification via growing valence from **O3**
-- structural upper bound on the cascade exponent from **O4**
+- the open status of a structural bound on the cascade exponent, from **O4** (no bound follows
+  from the bounded-flux and Cheeger argument)
 - admissible-frontier saturation from **O5**
 - fixed finite-dimensional no-go from **O6**
 - capacity reformulation and state law from **O7**
@@ -154,7 +155,7 @@ O8 advances the structural chain as follows:
 3. Spectral stratigraphy → discrete ADE levels
 4. O1 → ordering via support contraction
 5. O3 → amplification via valence growth
-6. O4 → structural upper bound on $\beta$
+6. O4 → no structural bound on $\beta$ from bounded flux and Cheeger expansion (open)
 7. O5 → admissible-frontier saturation and localisation of the problem
 8. O6 → no-go theorem for fixed finite-dimensional fingerprints
 9. O7 → reformulation in terms of projective capacity
