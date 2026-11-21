@@ -53,13 +53,13 @@
 \newcommand{\perm}{\mathrm{perm}}
 
 \title{\textbf{Three-Step Path Fingerprints on LPS Graphs and the Capacity Growth Exponent}\\[6pt]
-\large Testing $\delta \in [7.4,\,10.6]$ at Ambient Dimension $O(q^3)$}
+\large A Comparison with the Historical Range $\delta \in [7.4,\,10.6]$ at Ambient Dimension $O(q^3)$}
 
 \author{J\'{e}r\^{o}me Beau\\
 \small Independent Researcher\\
 \small \href{mailto:jerome.beau@cosmochrony.org}{jerome.beau@cosmochrony.org}}
 
-\date{March 2026\\[2pt]\small Version 1.1}
+\date{March 2026\\[2pt]\small Version 1.2}
 
 \begin{document}
 
@@ -90,7 +90,8 @@
 
     We test the state law $\Rn \approx \Phi(\etan)$ of O7 at this fingerprint level on
     $X^{5,q}$ for $q \in \{13, 17, 29\}$, extract the capacity growth exponent $\delta$
-    from the log-log slope of $\bSigma_n$ vs.\ $p(n)$, and test whether $\delta \in [7.4,\,10.6]$.
+    from the log-log slope of $\bSigma_n$ vs.\ $p(n)$, and compare it with the historical range
+    $\delta \in [7.4,\,10.6]$, which is neither a necessary condition nor a predicted value.
     We also update the O-series status table and identify the remaining open directions
     toward a first-principles derivation of $\delta$.
   \end{abstract}
@@ -123,11 +124,16 @@
   \item O4~\cite{Beau2026a8}: no bound on $\beta$ follows from the argument combining
   Born--Infeld saturation with the Cheeger inequality; the candidate, $\beta \leq 2$ in the raw
   exponent of O3, is not established.
-  \item O5~\cite{Beau2026a9}: vertex-level admissible spans saturate at $O(q)$,
-  preventing any power-law decay.
-  \item O6~\cite{Beau2026a10}: the Steinberg-matrix fingerprint saturates at BFS depth 6,
-  independent of $q$; Proposition~6.2 of~\cite{Beau2026a10} formalises the universal
-  no-go for all fixed finite-dimensional representations.
+  \item O5~\cite{Beau2026a9}: vertex-level admissible spans have dimension at most
+  $|\mathrm{Cl}(G)| = O(q)$, and no transition-level construction examined leaves a measurable
+  pre-saturation window.
+  \item O6~\cite{Beau2026a10}: the Steinberg-matrix vertex fingerprint, built on the permutation
+  representation, spans a space of dimension $q^2$; its BFS-ball span cannot grow again after a
+  plateau, so its saturation radius is at most $q^2-1$ and at most the diameter, and on $X^{5,q}$ it
+  reaches full rank at radius $4$--$5$ for $q \in \{29,41,61\}$ (Proposition~6.2 and Section~5
+  of~\cite{Beau2026a10}).
+  O6 does not establish a saturation radius independent of $q$ for every fixed
+  finite-dimensional representation.
   \item O7~\cite{Beau2026a11}: the discrete projective capacity $\Sigman(x)$ is identified
   as the correct observable; $\beta$ is reinterpreted as the exponent governing
   $\bSigma_n \sim p(n)^{-\delta}$; the state law $\Rn \approx \Phi(\etan)$
@@ -146,11 +152,12 @@
     A crucial lesson from O7, Section~7.4 is that the adjoint fingerprint
     $\pi_k^\mathrm{adj}(\gamma) = \Ad(s_1) \otimes \cdots \otimes \Ad(s_k)$ lives
     in $\R^{3^{2k}}$, a space of \emph{fixed} dimension independent of $q$.
-    For $k = 3$, the ambient dimension is $3^6 = 729$, still independent of $q$,
-    so the O6 obstruction applies directly: the fingerprint span saturates at bounded
-    BFS depth.
+    For $k = 3$, the ambient dimension is $3^6 = 729$, still independent of $q$, so its span
+    dimension is capped independently of $q$; O7 observes saturation within the first BFS step.
+    O6's Proposition~6.2 concerns vertex fingerprints linear in a representation and does not by
+    itself give a saturation radius for this path fingerprint.
 
-    Overcoming this requires a representation whose dimension grows with $q$.
+    A cap growing with $q$ requires a representation whose dimension grows with $q$.
     O7, Section~7.4 identifies the permutation representation
     $\rho_\perm : G \to \Sym(\Proj^1(\F_q))$ of dimension $q+1$ as the minimal
     such representation compatible with the LPS graph structure.
@@ -246,22 +253,24 @@
     For $\delta \in [7.4,\,10.6]$ this bound lies inside $\beta^* = (0.09, 0.13)$; it does not select
     $\beta^*$, and $\beta^*$ is compatible with it only if $\delta < 10.611$.
 
-  \subsection{The O6 obstruction and why $k = 3$ adjoint fingerprints fail}
+  \subsection{O6 and the $k = 3$ adjoint fingerprint}
     \label{sec:background-o6}
 
-    Proposition~6.2 of O6~\cite{Beau2026a10} states: for any fixed finite-dimensional
-    representation $\rho : G \to \mathrm{GL}(V)$, there exists a constant
-    $k^*(\rho, p) < \infty$ such that $\dim \Pi_\rho(S_n) = \dim \Pi_\rho(S_{k^*})$
-    for all $n \geq k^*$.
-    The bound $k^*$ is controlled by the diameter of the Hecke action on $\mathrm{End}(V)$,
-    which is independent of $q$.
+    Proposition~6.2 of O6~\cite{Beau2026a10} states, for a vertex fingerprint
+    $\pi_\rho(v) = \mathrm{vec}(\rho(v)M)$ with $M$ commuting with $\rho(G)$: the BFS-ball span
+    increases strictly until it stops, and never grows again after a plateau; the saturation radius
+    is at most the final span dimension minus one and at most the graph diameter.
+    These bounds depend on $q$ for the representations of $\PSL(2,\F_q)$ used here, and the
+    proposition does not cover transition or path fingerprints.
+    Version~1.2 of O6 stated a saturation radius independent of $q$ for every fixed
+    finite-dimensional representation; O6~2.0 withdraws that statement.
 
     For the adjoint representation $\Ad : G \to \mathrm{GL}(\mathfrak{su}(2))$ of real
     dimension 3, the tensor product $\Ad^{\otimes k}$ has dimension $3^{2k}$, fixed
     independently of $q$.
     In particular, at $k = 3$ the adjoint fingerprint lives in $\R^{3^6} = \R^{729}$,
-    with the O6 obstruction applying directly: saturation occurs at bounded BFS depth,
-    independent of $q$.
+    so its span dimension is capped independently of $q$, whatever the radius at which it
+    saturates.
 
   \section{The $k = 3$ Permutation-Path Fingerprint}
   \label{sec:fingerprint}
@@ -282,15 +291,15 @@
     $P_v \in \{0,1\}^{(q+1)\times(q+1)}$.
     The dimension of this representation is $q+1$, which grows with $q$.
 
-    \begin{remark}[Why the permutation representation escapes O6]
+    \begin{remark}[Relation to O6]
       \label{rem:perm-escape}
-      The O6 no-go (Proposition~6.2 of \cite{Beau2026a10}) applies to representations
-      of \emph{fixed} dimension, independent of $q$.
-      The permutation representation has dimension $q+1$, which grows with $q$.
-      The ambient fingerprint space therefore grows as $(q+1)^3 \approx q^3$, and the
-      Hecke-algebra argument for bounded saturation depth does not apply: the algebra
-      $\mathrm{End}(\R^{q+1})$ grows with $q$, so the BFS orbit cannot span it within
-      a $q$-independent bound.
+      O6~\cite{Beau2026a10} already uses the permutation representation, through its vertex
+      fingerprint $\mathrm{vec}(P_v - J/(q+1))$, whose span has dimension $q^2$ and saturates at
+      radius $4$--$5$ on $X^{5,q}$ for the primes it computes.
+      Its Proposition~6.2 does not apply to the $k=3$ path fingerprint, which is not a vertex
+      fingerprint linear in a representation.
+      What the larger ambient dimension $(q+1)^3$ can change is the explored cardinality at
+      saturation; it cannot lengthen the window in BFS radius beyond the diameter of the graph.
     \end{remark}
 
   \subsection{Construction of the fingerprint}
@@ -599,9 +608,9 @@
 
     The key structural result is:
     \begin{quote}
-      \emph{The obstruction to measuring $\delta$ at these group sizes is not algebraic
-        (as in O6) but geometric: exponential shell growth collapses the observable
-        window from $O(q^2)$ vertices to $O(\log q)$ BFS steps.}
+      \emph{The obstruction to measuring $\delta$ at these group sizes is geometric:
+        exponential shell growth collapses the observable window from $O(q^2)$ vertices to
+        $O(\log q)$ BFS steps.}
     \end{quote}
     This is a precise and falsifiable statement: it predicts that any graph family
     with sub-exponential shell growth (e.g.\ polynomial growth of order $d$) would
@@ -721,7 +730,7 @@
     This establishes a new class of obstruction, distinct from all previous ones in the
     O-series:
     \begin{quote}
-      \emph{Even when the O6 algebraic obstruction is removed,
+      \emph{Even when the span dimension grows with $q$,
         exponential shell growth imposes a geometric compression
         that prevents exponent extraction on LPS graphs at these group sizes.}
     \end{quote}
@@ -731,18 +740,16 @@
     (Table~\ref{tab:exponents}).
     The insufficiency is quantitative and geometric, not structural.
 
-    \begin{remark}[O6 vs O8 obstruction]
+    \begin{remark}[O6 and O8]
       \label{rem:not-o6}
-      The O6 no-go (Proposition~6.2 of~\cite{Beau2026a10}) produces a window of
-      \emph{bounded} depth independent of $q$: it is an algebraic obstruction
-      from the Hecke operator saturation of any fixed-dimension representation.
-      The O8 geometric compression produces a window of depth $O(\log q)$: it is a
-      geometric obstruction from exponential shell growth.
-      The two obstructions are of entirely different types and require different remedies:
-      the O6 obstruction is overcome by moving to growing-dimension fingerprints
-      (done here);
-      the O8 obstruction is overcome by moving to graphs with sub-exponential shell growth
-      (open direction O8-O3).
+      The same geometric bound applies to O6's fingerprint: every BFS filtration of $X^{p,q}$
+      ends at the diameter, $O(\log q)$, and O6's certified saturation radius is $4$--$5$
+      on $X^{5,q}$ (Proposition~6.2 and Section~5 of~\cite{Beau2026a10}).
+      O6~2.0 withdraws the earlier reading of its saturation as an algebraic obstruction of
+      $q$-independent depth, so the two papers are not separated by obstruction type.
+      They differ in span dimension: $q^2$ for O6, a sketch of $(q+1)^3$ here.
+      A window in BFS radius longer than the diameter requires graphs with sub-exponential shell
+      growth (open direction O8-O3).
     \end{remark}
 
   \section{Structural Interpretation}
@@ -756,15 +763,13 @@
 
     \medskip
     \noindent
-    \textbf{Result 1: genuine escape from the O6 obstruction.}
+    \textbf{Result 1: rank growth over several BFS steps.}
     The rank of the sketched span at $|S_n| = q^2$ is 764 for $(5,29)$ and 1109 for
     $(13,17)$, in both cases comparable to $q^2$ (841 and 289 respectively).
-    This would be impossible under the O6 no-go (Proposition~6.2 of~\cite{Beau2026a10}),
-    which guarantees saturation at bounded BFS depth for any fixed-dimension
-    representation.
-    The fact that the rank continues to grow across multiple BFS steps, reaching $O(q^2)$
-    before the sketch saturates, confirms that the $k=3$ permutation-path fingerprint
-    escapes the fixed-representation obstruction.
+    The rank continues to grow across several BFS steps, reaching $O(q^2)$ before the sketch
+    saturates.
+    No result of O6 excludes this: O6~2.0 proves no saturation radius independent of $q$, and
+    its Proposition~6.2 does not cover path fingerprints.
 
     \medskip
     \noindent
@@ -802,9 +807,9 @@
         O4 & Born--Infeld + Cheeger & $O(1)$ &
         No bound follows; candidate $\beta \leq 2$ (raw) open \\
         O5 & Vertex admissibility & $O(q)$ &
-        Not measurable: $O(q)$ saturation \\
+        Not measurable: span dimension $\le |\mathrm{Cl}(G)|$; no window \\
         O6 & Steinberg-matrix & $O(q^2)$ &
-        Not measurable: bounded-depth no-go \\
+        Not measurable: span dimension $q^2$, full rank at radius $4$--$5$ \\
         O7 & Capacity + state law & $O(q^4)$ &
         Reinterpreted as capacity growth exponent $\delta$ \\
         O8 & $k=3$ perm.-path & $O(q^3)$ &
@@ -814,18 +819,17 @@
       \end{tabular}
     \end{table}
 
-  \subsection{The Hecke obstruction does not apply}
+  \subsection{Relation to O6's saturation result}
     \label{sec:interpretation-hecke}
 
-    The bounded-saturation-depth result of O6 relies on the Hecke action of the LPS
-    generators on any fixed-dimension representation space.
-    For the permutation representation on $\mathbb{P}^1(\mathbb{F}_q)$, the relevant
-    algebra $\mathrm{End}(\mathbb{R}^{q+1})$ has dimension $(q+1)^2$ growing with $q$.
-    The Hecke operators span only the Iwahori--Hecke subalgebra (dimension $q+1$) within
-    $O(1)$ steps, but the full endomorphism algebra requires $O(q)$ steps.
-    The rank data of Table~\ref{tab:exponents} confirm this: new directions continue to
-    be added at every step up to the sketch saturation, ruling out a fixed-depth
-    representation-theoretic saturation.
+    Version~1.2 of O6 attributed a saturation radius independent of $q$ to the Hecke action of
+    the LPS generators on any fixed-dimension representation space; O6~2.0 withdraws that
+    attribution.
+    For its own permutation-representation vertex fingerprint, O6~2.0 certifies that the span
+    reaches its full dimension $q^2$ at radius $4$--$5$ on $X^{5,q}$.
+    The rank data of Table~\ref{tab:exponents} show new directions added at every step up to the
+    sketch saturation for the $k=3$ path fingerprint; this is a numerical observation for the
+    computed configurations, not a consequence of the representation dimension alone.
 
   \section{Discussion and Open Directions}
   \label{sec:discussion}
@@ -907,13 +911,10 @@
   ($X^{17,13}$, $X^{13,17}$, $X^{5,29}$, $X^{5,41}$),
   within the discrete projective capacity framework of O7.
   The fingerprint $\pi_3(v_1,v_2,v_3) = \rho_\perm(v_1) \otimes \rho_\perm(v_2)
-  \otimes \rho_\perm(v_3)$ lives in a space of dimension $(q+1)^3$ growing with $q$,
-  and thereby escapes the O6 universal no-go for fixed-representation fingerprints
-  (Proposition~6.2 of~\cite{Beau2026a10}).
+  \otimes \rho_\perm(v_3)$ lives in a space of dimension $(q+1)^3$ growing with $q$.
 
   Three positive structural results were established.
-  First, the sketch rank grows continuously to $O(q^2)$ vertices before saturating,
-  confirming numerically that the O6 obstruction does not apply.
+  First, the sketch rank grows continuously to $O(q^2)$ vertices before saturating.
   Second, the effective pre-saturation window scales as $O(q^2)$ in vertex count,
   confirming Conjecture~\ref{conj:window} and establishing the first growing window
   in the O-series.
@@ -934,9 +935,10 @@
   The O-series progression can now be read as three successive levels of obstruction,
   each resolved before the next is encountered:
   \begin{itemize}[nosep]
-  \item O4--O6: \emph{algebraic obstruction} — fixed-dimension representations
-  saturate at bounded BFS depth (Hecke operator action);
-  resolved by moving to growing-dimension representations (O8).
+  \item O5--O6: \emph{dimension caps} — class-function encodings span at most $|\mathrm{Cl}(G)|$
+  directions (O5) and the Steinberg-matrix fingerprint $q^2$ (O6), with no measurable
+  pre-saturation window; O4 is not part of this level, since no bound follows from its argument;
+  addressed here by a fingerprint of larger dimension (O8).
   \item O7--O8: \emph{geometric compression} — exponential LPS shell growth
   compresses the $O(q^2)$-vertex window to $O(\log q)$ BFS steps;
   resolved by moving to sub-exponential-growth graphs (O8-O3).
